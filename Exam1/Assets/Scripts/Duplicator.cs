@@ -20,6 +20,15 @@ public class Duplicator : MonoBehaviour
     public GameObject don;
     public GameObject closed;
 
+    public Text warm;
+    public Text cold;
+
+    void Start()
+    {
+        warm.text = string.Format("{0}", donutsDuplicated);
+        cold.text = string.Format("{0}", iceCreamsDuplicated);
+    }
+
 
     void Update()
     {
@@ -36,6 +45,7 @@ public class Duplicator : MonoBehaviour
         {
             Duplication(iceCream);
             iceCreamsDuplicated = iceCreamsDuplicated + 1;
+            cold.text = string.Format("{0}", iceCreamsDuplicated);
         }
         else if(iceCreamsDuplicated == maximumIceCreams)
         {
@@ -49,6 +59,7 @@ public class Duplicator : MonoBehaviour
         {
             Duplication(donut);
             donutsDuplicated = donutsDuplicated + 1;
+            warm.text = string.Format("{0}", donutsDuplicated);
         }
         else if(donutsDuplicated == maximumDonuts)
         {
@@ -62,12 +73,5 @@ public class Duplicator : MonoBehaviour
         Vector3 newPos = new Vector3(Random.Range(-1f, 1f), 1.5f, Random.Range(1.3f, 4f));
         d1.transform.position = newPos;
     }
-    
-    void OnGUI()
-    {
-        GUI.Box(new Rect(20, 10, 150, 25), "Donuts Bought: " + donutsDuplicated);
-        GUI.Box(new Rect(20, 40, 150, 25), "Ice Cream Bought: " + iceCreamsDuplicated);
-    }
-
 
 }
